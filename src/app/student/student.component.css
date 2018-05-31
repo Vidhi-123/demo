@@ -1,0 +1,19 @@
+table
+{
+
+  height:200px;
+  width:400px;
+  border:1px solid black;
+  margin-top: 100px;
+
+
+}
+
+
+tr:hover{
+  background-color: red;
+}
+tr:nthchild(even){
+  background-color: grey;
+
+}

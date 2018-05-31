@@ -1,0 +1,32 @@
+
+
+      <h1>
+        EMPLOYEE TABLE
+      </h1>
+      <table align="center" border:1px solid black>
+        <tr class="a">
+          <th>
+              EID
+          </th>
+          <th class="a">
+            ENAME
+          </th>
+          <th>EGENDER</th>
+          <th>EDESIGNATION</th>
+          <th>ESALARY</th>
+          <th>ACTION</th>
+
+        </tr>
+        <tr *ngFor="let item of arr;let i=index">
+          <td>{{item.eid}}</td>
+          <td>{{item.ename}}</td>
+          <td>{{item.egender}}</td>
+          <td>{{item.edesignation}}</td>
+          <td>{{item.esalary}}</td>
+          <td>  <button (click)="onDelete(i)" type="button" class="btn btn-default btn-lg">
+              <span class="glyphicon glyphicon-trash" aria-hidden="true"></span> delete
+            </button></td>
+        </tr>
+
+      </table>
+

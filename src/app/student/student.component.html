@@ -1,0 +1,50 @@
+<div class="container">
+  <input type="number" [(ngModel)]="rno">
+  <input type="text" [(ngModel)]="name">
+  <input type="text" [(ngModel)]="result">
+  <input type="text" [(ngModel)]="mobile">
+  <input type="radio" [(ngModel)]="g1" name= "n1" value="male" >male
+  <input type="radio" [(ngModel)]="g1"  name="n1" value="female">female
+  <select [(ngModel)]="op1">
+    <option *ngFor="let item of arr1">{{item}}</option>
+  </select>
+  <input type="number" [(ngModel)]="fees">
+
+
+
+  <button (click)="onAdd()">add</button>
+
+</div>
+<div class="container">
+
+<table align="center">
+  <tr>
+    <th colspan=8 class="a">student</th>
+  </tr>
+  <tr>
+    <th>rno</th>
+    <th>name</th>
+      <th>result</th>
+      <th>mobile</th>
+      <th>gender</th>
+      <th>city</th>
+      <th>fees</th>
+      <th>action</th>
+  </tr>
+  <tr *ngFor="let item of arr;let i=index">
+    <td>{{item.rno}}</td>
+    <td>{{item.name}}</td>
+    <td>{{item.result}}</td>
+    <td>{{item.mobile}}</td>
+    <td>{{item.gender}}</td>
+    <td>{{item.fees}}</td>
+    <td>{{item.result}}</td>
+
+    <td>
+      <button (click)="onDelete(i)">delete</button>
+      <button (click)="onUpdate(item)">update</button>
+    </td>
+  </tr>
+  </table>
+  </div>
+

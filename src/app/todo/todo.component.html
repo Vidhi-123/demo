@@ -1,0 +1,39 @@
+<div class="container">
+  <input type="number" #txtid>
+  <input type="text" #txttitle>
+  <select #op1>
+    <option *ngFor="let item of arr1">{{item}}</option>
+  </select>
+  <button (click)="onAdd(txtid.value,txttitle.value,op1.value)">add</button>
+</div>
+
+<table align="center">
+  <tr>
+    <th>Id</th>
+    <th>title</th>
+      <th>status</th>
+      <th>action</th>
+  </tr>
+  <tr *ngFor="let item of tasks;let i=index">
+    <td>{{item.id}}</td>
+    <td>{{item.title}}</td>
+    <td>{{item.status}}</td>
+    <td>
+      <!-- <button (click)="onDelete(i)">Delete</button> -->
+
+
+        <button (click)="onDelete(i)" type="button" class="btn btn-default btn-lg">
+          <span class="glyphicon glyphicon-trash" aria-hidden="true"></span> delete
+        </button>
+
+
+
+      <!-- <button (click)="onUpdate(item)">update</button> -->
+      <button (click)="onUpdate(item)" type="button" class="btn btn-default btn-lg">
+          <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> update
+        </button>
+
+
+</td>
+  </tr>
+</table>
