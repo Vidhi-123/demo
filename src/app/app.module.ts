@@ -10,6 +10,7 @@ import { FormsModule } from '@angular/forms';
 import { StudentComponent } from './student/student.component';
 import { ProductComponent } from './product/product.component';
 import { EmployeeComponent } from './employee/employee.component';
+import { HttpClientModule } from "@angular/common/http"
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { EmployeeComponent } from './employee/employee.component';
   ],
   imports: [
     BrowserModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
 
   ],
   providers: [],

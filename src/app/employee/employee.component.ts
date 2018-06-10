@@ -16,6 +16,10 @@ export class EmployeeComponent implements OnInit {
   {
     this.arr.splice(i,1)
   }
+  onUpdate(item:employee)
+  {
+    
+  }
   constructor() { }
 
   ngOnInit() {

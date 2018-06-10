@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { student } from './s1';
+import { StudentService } from '../student.service';
 
 @Component({
   selector: 'app-student',
@@ -11,14 +12,12 @@ export class StudentComponent implements OnInit {
   name:string;
   result:string;
   mobile:string;
-  g1:string;
-  op1:string;
+  g1:string='female';
+  op1:string='abad';
   fees:number;
 
       arr:student[]=[
-        new student(1,'vidhi','pass','988888888','female','abad',8000),
-        new student(2,'hetvee','pass','89999990','female','baroda',12000),
-        new student(3,'dhruvi','fail','78888888','female','pune',9000)
+
       ];
       arr1:string[]=[
         'abad',
@@ -26,9 +25,15 @@ export class StudentComponent implements OnInit {
         'baroda',
         'rajkot'
       ];
-      onDelete(i)
+      flag:boolean=false;
+      onDelete(item)
       {
-        this.arr.splice(i,1)
+        this._xyz.deleteStudent(item).subscribe(
+          (data:any)=>{
+             this.arr.splice(this.arr.indexOf(item),1);
+          }
+        );
+        // this.arr.splice(i,1)
       }
       onUpdate(item:student)
       {
@@ -42,15 +47,37 @@ export class StudentComponent implements OnInit {
       }
       onAdd()
       {
+        this._xyz.addStudent(new student(this.rno,this.name,this.result,this.mobile,this.g1,this.op1,this.fees)).subscribe(
+        (data:any)=>{
+          this.arr.push(new student(this.rno,this.name,this.result,this.mobile,this.g1,this.op1,this.fees));
+        }
+        );
 
 
 
 
-        this.arr.push(new student(this.rno,this.name,this.result,this.mobile,this.g1,this.op1,this.fees))
+
        }
-  constructor() { }
+       onClick()
+       {
+         if(this.flag)
+         {
+           this.flag=false
+         }
+         else
+         {
+         this.flag=true
+         }
+       }
+  constructor(private _xyz:StudentService) { }
 
   ngOnInit() {
+
+    this._xyz.getAllTask().subscribe(
+      (data:student[])=>{
+        this.arr=data
+      }
+    );
   }
 
 }

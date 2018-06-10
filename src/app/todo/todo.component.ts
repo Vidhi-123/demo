@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { task } from './tasks';
+import { TodoService } from '../todo.service';
+
+
 
 @Component({
   selector: 'app-todo',
@@ -8,20 +11,23 @@ import { task } from './tasks';
 })
 export class TodoComponent implements OnInit {
 tasks:task[]=[
-  new task(1,'email','pending'),
-  new task(2,'github','pending'),
-  new task(3,'go for movie','done')
-]
+
+];
 arr1:string[]=[
   'pending',
   'done'
 ];
 
 
-  constructor() { }
-onDelete(i)
+  constructor(private _xyz:TodoService) { }
+onDelete(item)
 {
-  this.tasks.splice(i,1);
+  this._xyz.DeleteTask(item).subscribe(
+    (data:any)=>{
+      this.tasks.splice(this.tasks.indexOf(item),1);
+    }
+  );
+  // this.tasks.splice(i,1);
 }
 onUpdate(item:task)
 {
@@ -36,10 +42,30 @@ onUpdate(item:task)
 }
 onAdd(i,t,s)
 {
-  this.tasks.push(new task(i,t,s))
+  this._xyz.addTask(new task(i,t,s)).subscribe(
+    (data:any)=>{
+        this.tasks.push(new task(i,t,s));
+    }
+
+  );
+
+
+
+
+
 }
 
-  ngOnInit() {
-  }
 
+  ngOnInit() {
+
+    this._xyz.getAlltask().subscribe(
+      (data:task[])=>{
+        this.tasks=data;
+      }
+
+    );
+
+
+
+}
 }

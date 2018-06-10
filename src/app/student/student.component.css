@@ -2,18 +2,20 @@ table
 {
 
   height:200px;
-  width:400px;
+  width:500px;
   border:1px solid black;
   margin-top: 100px;
 
 
+}
+tr,td,th{
+  border:1px solid black;
 }
 
 
 tr:hover{
   background-color: red;
 }
-tr:nthchild(even){
-  background-color: grey;
-
+tr:nth-child(odd){
+  color:blueviolet;
 }

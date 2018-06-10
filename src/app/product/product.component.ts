@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { product } from './pr';
-import { parse } from 'querystring';
+import { ProductService } from '../product.service'
 
 @Component({
-  selector: 'app-product',
+  selector: 'app-pro',
   templateUrl: './product.component.html',
   styleUrls: ['./product.component.css']
 })
@@ -15,40 +15,72 @@ import { parse } from 'querystring';
     id:number;
     name:string;
     price:number;
-    image:string="../assets/s1.jpg";
+    image:string;
     mfg:string;
-    soh:number;
+    soh:number=1;
     arr:product[]=[
-      new product(1,'ac',10000,'','abc',20),
-      new product(2,'tv',20000,'','lmn',10),
-      new product(3,'fr',90000,'','xyz',40)
+
     ];
-    arr1:number[]=[];
+    arr1:number[]=[
+
+    ];
     no1:number;
 
-    onAdd()
-    {
+
+       onDelete(item)
+       {
+         this._xyz.DeleteTask(item).subscribe(
+           (data:any)=>{
+              this.arr.splice(this.arr.indexOf(item),1);
+           }
+         );
+
+       }
+
+
+
+
+
+
+
+
+// onUpdate(item:product)
+// {
+//   if(item.soh>0)
+// {
+// item.soh+=1
+
+// }
+// }
+onAdd()
+{
+
+  this._xyz.addProduct(new product(this.id,this.name,this.price,this.image,this.mfg,this.soh)).subscribe(
+    (data:any)=>{
       this.arr.push(new product(this.id,this.name,this.price,this.image,this.mfg,this.soh));
     }
-    onDelete(i)
-{
-  this.arr.splice(i,1);
-}
-onUpdate(item:product)
-{
-  if(item.soh>10)
-{
-item.soh=40
+  );
 
-}
-}
+
+
+
+   }
+constructor(private _xyz:ProductService) { }
 
   ngOnInit() {
-    for(let no1 =1;no1<=50;no1++)
+    for(let no1=1;no1<=50;no1++)
     {
       this.arr1.push(no1);
     }
+    this._xyz.getAllTask().subscribe(
+      (data:product[])=>{
+        this.arr=data
+        console.log(this.arr);
+      }
+    );
+
   }
+
 
 }
 
