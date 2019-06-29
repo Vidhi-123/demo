@@ -38,7 +38,7 @@
 
 
 
-  <button class="btn btn-primary btn-lg form-control" (click)="onAdd()">add</button>
+  <button mat-button style="background-color: blueviolet"  (click)="onAdd()">add</button>
 
 </div>
 <div class="container">
@@ -76,4 +76,5 @@
  </tr>
   </table>
   </div>
+  <mat-paginator [pageSizeOptions]="[1,2,5]"></mat-paginator>
 

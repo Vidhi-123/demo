@@ -13,14 +13,21 @@ export class ProductService {
   {
     return this._http.get(this.url);
   }
-  addProduct(item:product){
-    let body=JSON.stringify(item);
-    let _abc=new HttpHeaders().set('Content-Type','application/json');
- return this._http.post(this.url,body,{headers:_abc});
+  getProductById(id:number){
+    return this._http.get(this.url+id)
+  }
+  addProduct(item:FormData){
+
+ return this._http.post(this.url,item);
   }
   DeleteTask(item:product){
     let _abc=new HttpHeaders().set('Content-Type','application/json');
     return this._http.delete(this.url+item.id,{headers:_abc});
+  }
+  UpdateProduct(item:product){
+    let body=JSON.stringify(item);
+    let _abc=new HttpHeaders().set('Content-Type','application/json');
+ return this._http.put(this.url+item.id,body,{headers:_abc});
   }
 }
 

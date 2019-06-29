@@ -1,0 +1,8 @@
+<div class="container">
+  <input type="number" [(ngModel)]="id">
+  <input type="text" [(ngModel)]="title">
+  <select [(ngModel)]="status">
+    <option *ngFor="let item of arr1">{{item}}</option>
+  </select>
+  <button (click)="onSave()">add</button>
+</div>

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { product } from './pr';
 import { ProductService } from '../product.service'
+import { Router } from '@angular/router';
+import { EditproductComponent } from './editproduct/editproduct.component';
 
 @Component({
   selector: 'app-pro',
@@ -25,6 +27,7 @@ import { ProductService } from '../product.service'
 
     ];
     no1:number;
+    selectedFile:File=null;
 
 
        onDelete(item)
@@ -44,18 +47,21 @@ import { ProductService } from '../product.service'
 
 
 
-// onUpdate(item:product)
-// {
-//   if(item.soh>0)
-// {
-// item.soh+=1
-
-// }
-// }
+onUpdate(item:product)
+{
+  this._route.navigate(['/editproduct',item.id]);
+}
 onAdd()
 {
+  const fd=new FormData();
+  fd.append('id',this.id.toString());
+  fd.append('name',this.name);
+  fd.append('price',this.price.toString());
+  fd.append('image',this.selectedFile,this.selectedFile.name);
+  fd.append('mfg',this.mfg);
+  fd.append('soh',this.soh.toString());
 
-  this._xyz.addProduct(new product(this.id,this.name,this.price,this.image,this.mfg,this.soh)).subscribe(
+  this._xyz.addProduct(fd).subscribe(
     (data:any)=>{
       this.arr.push(new product(this.id,this.name,this.price,this.image,this.mfg,this.soh));
     }
@@ -65,7 +71,11 @@ onAdd()
 
 
    }
-constructor(private _xyz:ProductService) { }
+   onChange(value)
+   {
+     this.selectedFile=<File>value.target.files[0];
+   }
+constructor(private _xyz:ProductService,private _route:Router) { }
 
   ngOnInit() {
     for(let no1=1;no1<=50;no1++)

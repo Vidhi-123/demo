@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,ViewChild } from '@angular/core';
 import { student } from './s1';
 import { StudentService } from '../student.service';
+import { Router } from '@angular/router';
+import { MatPaginator,MatTableDataSource } from '@angular/material';
 
 @Component({
   selector: 'app-student',
@@ -25,6 +27,9 @@ export class StudentComponent implements OnInit {
         'baroda',
         'rajkot'
       ];
+      dataSource=new MatTableDataSource();
+      @ViewChild(MatPaginator) paginator: MatPaginator;
+
       flag:boolean=false;
       onDelete(item)
       {
@@ -37,13 +42,7 @@ export class StudentComponent implements OnInit {
       }
       onUpdate(item:student)
       {
-        if(item.result=='pass')
-        {
-          item.result='congo';
-        }
-        else{
-          item.result='work hard';
-        }
+        this._route.navigate(['/editstudent',item.rno])
       }
       onAdd()
       {
@@ -69,9 +68,10 @@ export class StudentComponent implements OnInit {
          this.flag=true
          }
        }
-  constructor(private _xyz:StudentService) { }
+  constructor(private _xyz:StudentService,private _route:Router) { }
 
   ngOnInit() {
+    this.dataSource.paginator=this.paginator;
 
     this._xyz.getAllTask().subscribe(
       (data:student[])=>{

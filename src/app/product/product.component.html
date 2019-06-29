@@ -9,7 +9,7 @@
         <h4>PRICE:</h4> <input class="form-control" type="number" [(ngModel)]="price">
       </div>
       <div class="form-group">
-        <h4>IMAGE:</h4> <input class="form-control" type="text" [(ngModel)]="image">
+        <h4>IMAGE:</h4> <input class="form-control" type="file" (change)="onChange($event)">
       </div>
       <div class="form-group">
           <h4>MANUFACTERER:</h4> <input class="form-control" type="text" [(ngModel)]="mfg">
@@ -26,25 +26,34 @@
 
 
   <br>
+<button (click)="onAdd()">Add</button>
 
 
 
-  <button type="button" class="form-control btn btn-primary" (click)="onAdd()">add</button>
 </div>
-<div class="container">
-    <div class="row">
-        <div *ngFor="let item of arr;let i=index" class="col-sm-6 col-md-4">
-          <div class="thumbnail">
-            <img src="{{item.image}}" alt="...">
-            <div class="caption">
-              <h3>{{item.name}}</h3>
-              <h3>{{item.price}}</h3>
-              <h3>{{item.soh}}</h3>
 
-              <p><a href="#" class="btn btn-primary" role="button" (click)="onDelete(item)">DELETE</a> <a href="#" class="btn btn-default" role="button" (click)="onUpdate(item)">UPDATE</a></p>
-            </div>
-          </div>
-        </div>
-      </div>
+              <div *ngFor="let item of arr;let i=index" class="col-sm-6 col-md-4">
+              <p><a class="btn btn-primary" role="button" (click)="onDelete(item)">DELETE</a> <a class="btn btn-default" role="button" (click)="onUpdate(item)">UPDATE</a></p>
+              <mat-card class="example-card">
+                <mat-card-header>
+                  <div mat-card-avatar class="example-header-image"></div>
+                  <mat-card-title>{{item.name}}</mat-card-title>
+                  <mat-card-subtitle></mat-card-subtitle>
+                </mat-card-header>
+                <img mat-card-image src="http://localhost:3000/images/product_img/{{item.image}}" alt="Photo of a Shiba Inu">
+                <mat-card-content>
+
+                </mat-card-content>
+                <mat-card-actions>
+                  <button mat-button (click)="onDelete(item)">DELETE</button>
+                  <button mat-button (click)="onUpdate(item)">Update</button>
+                </mat-card-actions>
+              </mat-card>
+              </div>
+
+
+
+
+
 
 

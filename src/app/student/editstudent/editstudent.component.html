@@ -1,0 +1,30 @@
+<div class="form-group">
+  <h4>RNO:</h4><input class="form-control" type="number" [(ngModel)]="rno" required>
+</div>
+<div class="form-group">
+    <h4>NAME:</h4><input class="form-control" type="text" [(ngModel)]="name">
+  </div>
+  <div class="form-group">
+      <h4>RESULT:</h4><input class="form-control" type="text" [(ngModel)]="result">
+    </div>
+    <div class="form-group">
+        <h4>MOBILE:</h4><input class="form-control" type="text" [(ngModel)]="mobile" maxlength="10">
+      </div>
+      <div class="form-group">
+          <h4>GENDER:</h4><input type="radio" value="male" name="n1" [(ngModel)]="gender">MALE
+
+            <input  type="radio" value="female" name="n1" [(ngModel)]="gender">FEMALE
+          </div>
+          <div class="form-group">
+              <h4>CITY:</h4><select class="form-control"  [(ngModel)]="city">
+                <option *ngFor="let item of arr1">{{item}}</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <h4>FEES:</h4><input class="form-control" type="number" [(ngModel)]="fees">
+              </div>
+
+
+
+
+<button class="btn btn-primary btn-lg form-control" (click)="onSave()">SAVE</button>

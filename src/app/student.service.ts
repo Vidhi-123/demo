@@ -14,6 +14,9 @@ export class StudentService {
   {
     return this._http.get(this.url)
   }
+  getStudentById(rno:number){
+    return this._http.get(this.url+rno)
+  }
   addStudent(item:student){
     let body=JSON.stringify(item)
     let _abc= new HttpHeaders().set('Content-Type','application/json');
@@ -23,5 +26,11 @@ export class StudentService {
   deleteStudent(item:student){
     let _abc= new HttpHeaders().set('Content-Type','application/json');
     return this._http.delete(this.url+item.rno,{headers:_abc})
+  }
+  UpdateStudent(item:student){
+    let body=JSON.stringify(item)
+    let _abc= new HttpHeaders().set('Content-Type','application/json');
+    return this._http.put(this.url+item.rno,body,{headers:_abc});
+
   }
 }
