@@ -42,7 +42,7 @@ export class StudentComponent implements OnInit {
       }
       onUpdate(item:student)
       {
-        this._route.navigate(['/editstudent',item.rno])
+        this._route.navigate(['/student/edit',item.rno])
       }
       onAdd()
       {

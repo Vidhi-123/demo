@@ -32,7 +32,7 @@ export class CateogryComponent implements OnInit {
     }
   }
   onUpdate(item:cateogry){
-    this._route.navigate(['/editcateogry',item.cat_id])
+    this._route.navigate(['/cateogry/edit',item.cat_id])
   }
   onAdd()
       {

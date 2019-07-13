@@ -28,7 +28,7 @@ export class EditproductComponent implements OnInit {
   constructor(private act_route:ActivatedRoute,private _up:ProductService,private _route:Router) { }
 
   ngOnInit() {
-    this.id1=this.act_route.snapshot.params['id'];
+    this.id1=this.act_route.snapshot.params['pid'];
     this._up.getProductById(this.id1).subscribe(
       (data:product[])=>{
         this.id=data[0].id;

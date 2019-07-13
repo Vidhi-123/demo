@@ -49,7 +49,7 @@ import { EditproductComponent } from './editproduct/editproduct.component';
 
 onUpdate(item:product)
 {
-  this._route.navigate(['/editproduct',item.id]);
+  this._route.navigate(['/product/edit',item.id]);
 }
 onAdd()
 {

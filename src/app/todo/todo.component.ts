@@ -28,6 +28,10 @@ i:number;
 
   displayedColumns: string[] = ['id', 'title', 'status','action','select'];
 
+  id:number;
+  title:string;
+  status:string;
+
   dataSource = new MatTableDataSource();
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort:MatSort;
@@ -35,6 +39,8 @@ i:number;
   applyFilter(filterValue: string) {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
+
+
 
 
 
@@ -54,11 +60,12 @@ onUpdate(item:task)
 {
 this._route.navigate(['/edittodo',item.id])
 }
-onAdd(i,t,s)
+onAdd()
 {
-  this._xyz.addTask(new task(i,t,s)).subscribe(
+  this._xyz.addTask(new task(this.id,this.title,this.status)).subscribe(
     (data:any)=>{
-        this.tasks.push(new task(i,t,s));
+      console.log(data);
+        this.tasks.push(new task(this.id,this.title,this.status));
     }
 
   );

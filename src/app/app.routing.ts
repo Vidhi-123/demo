@@ -1,23 +1,20 @@
-import { RouterModule, Routes } from '@angular/router';
+import { RouterModule, Routes, PreloadAllModules, PreloadingStrategy } from '@angular/router';
 import { TodoComponent } from './todo/todo.component';
 import { ProductComponent } from './product/product.component';
-import { StudentComponent } from './student/student.component';
-import { CateogryComponent } from './cateogry/cateogry.component';
 import { EdittodoComponent } from './todo/edittodo/edittodo.component';
 import { EditproductComponent } from './product/editproduct/editproduct.component';
-import { EditcateogryComponent } from './cateogry/editcateogry/editcateogry.component';
-import { EditstudentComponent } from './student/editstudent/editstudent.component';
+import { EmployeeComponent } from './employee/employee.component';
+
 
 const arr:Routes=[
-{path:'',component:TodoComponent},
-{path:'product',component:ProductComponent},
-{path:'student',component:StudentComponent},
-{path:'cateogry',component:CateogryComponent},
+{path:'',component:EmployeeComponent},
+{path:'todo',component:TodoComponent},
+{path:'product',loadChildren:'./product/product.module#ProductModule'},
+{path:'student',loadChildren:'./student/student.module#StudentModule'},
+{path:'cateogry',loadChildren:'./cateogry/category.module#CategoryModule'},
 {path:'edittodo/:id',component:EdittodoComponent},
-{path:'editproduct/:id',component:EditproductComponent},
-{path:'editcateogry/:cat_id',component:EditcateogryComponent},
-{path:'editstudent/:rno',component:EditstudentComponent}
+{path:'employee',component:EmployeeComponent}
 
 ];
-export const routing=RouterModule.forRoot(arr)
+export const routing=RouterModule.forRoot(arr,{preloadingStrategy:PreloadAllModules})
 

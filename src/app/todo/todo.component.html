@@ -1,4 +1,4 @@
-<!-- <div class="container">
+ <!-- <div class="container">
   <input type="number" #txtid>
   <input type="text" #txttitle>
   <select #op1>
@@ -19,29 +19,47 @@
     <td>{{item.title}}</td>
     <td>{{item.status}}</td>
     <td>
-      <!-- <button (click)="onDelete(i)">Delete</button> -->
+      <button (click)="onDelete(i)">Delete</button> -->
 
 
         <!-- <button (click)="onDelete(item)" type="button" class="btn btn-default btn-lg">
           <span class="glyphicon glyphicon-trash" aria-hidden="true"></span> delete
-        </button> -->
+        </button>  
 
 
 
-      <!-- <button (click)="onUpdate(item)">update</button> -->
-      <!-- <button (click)="onUpdate(item)" type="button" class="btn btn-default btn-lg">
+       
+      <button (click)="onUpdate(item)" type="button" class="btn btn-default btn-lg">
           <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> update
-        </button> -->
+        </button> 
 
 
-<!-- </td>
+</td>
   </tr>
-</table> -->
+</table>   -->
 
-<div [hidden]="this.arr.length>0">
+ <div [hidden]="this.arr.length>0">
   <mat-spinner></mat-spinner>
 </div>
+<form>
+  <mat-form-field class="example-full-width">
+    <input matInput name="id" [(ngModel)]="id" type="number" placeholder="ID">
+  </mat-form-field>
+  <br>
+  <mat-form-field class="example-full-width">
+    <input matInput name="title" [(ngModel)]="title" type="text" placeholder="title">
+  </mat-form-field>
+  <br>
+  <mat-label>Employee Gender</mat-label><br><br>
+  <mat-radio-group name="status" [(ngModel)]="status">
+    <mat-radio-button value="Done">Done</mat-radio-button>
+    <mat-radio-button value="Pending">Pending</mat-radio-button>
+  </mat-radio-group>
 
+</form>
+<button (click)="onAdd()">add</button>
+
+<br><br>
 <mat-form-field>
   <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
 </mat-form-field>
@@ -49,25 +67,23 @@
 <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort>
 
 
-  <!-- Position Column -->
   <ng-container matColumnDef="id">
     <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
     <td mat-cell *matCellDef="let element"> {{element.id}} </td>
   </ng-container>
 
-  <!-- Name Column -->
+
   <ng-container matColumnDef="title">
     <th mat-header-cell *matHeaderCellDef mat-sort-header> Title </th>
     <td mat-cell *matCellDef="let element"> {{element.title}} </td>
   </ng-container>
 
-  <!-- Weight Column -->
+  
   <ng-container matColumnDef="status">
     <th mat-header-cell *matHeaderCellDef> STATUS </th>
     <td mat-cell *matCellDef="let element"> {{element.status}} </td>
   </ng-container>
 
-  <!-- Weight Column -->
   <ng-container matColumnDef="action">
       <th mat-header-cell *matHeaderCellDef> ACTION </th>
       <td mat-cell *matCellDef="let element"><button (click)="onDelete(element)" type="button" class="btn btn-default btn-lg">
